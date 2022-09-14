@@ -5,6 +5,12 @@ export default class TurmaAluno extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public turmasId: number
+
+  @column()
+  public alunosId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

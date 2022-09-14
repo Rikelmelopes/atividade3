@@ -5,6 +5,16 @@ export default class Curso extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public nome: string
+
+  @column()
+  public duracao: number
+
+  @column()
+  public modalidade: string
+
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

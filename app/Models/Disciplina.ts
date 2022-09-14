@@ -5,6 +5,12 @@ export default class Disciplina extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public nome: string
+  
+  @column()
+  public cursoId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
