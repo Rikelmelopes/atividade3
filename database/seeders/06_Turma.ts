@@ -7,8 +7,8 @@ export default class extends BaseSeeder {
       {
       nome:'Ads0028937', 
       professoresId:1,
-      disciplinasId:5,
-      semestresId:5,
+      disciplinasId:1,
+      semestresId:1,
       salasId:1,
       turno:'noturno'
     
