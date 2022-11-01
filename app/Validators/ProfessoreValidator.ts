@@ -26,15 +26,24 @@ export default class ProfessoreValidator {
   public schema = schema.create({
     nome: schema.string([rules.maxLength(100)]),
     cpf: schema.number([rules.unique({ table: "professores", column: "cpf" })]),
-    matricula: schema.string([]),
-    salario: schema.string.optional(),
-    email: schema.string.optional(),
-    telefone: schema.string.optional(),
+    matricula: schema.string([
+      rules.maxLength(20),
+      rules.unique({ table: "professores", column: "matricula" }),
+    ]),
+    salario: schema.string.optional([rules.maxLength(20)]),
+    email: schema.string([
+      rules.maxLength(100),
+      rules.unique({ table: "professores", column: "email" }),
+    ]),
+    telefone: schema.string([
+      rules.maxLength(15),
+      rules.unique({ table: "professores", column: "telefone" }),
+    ]),
     cep: schema.number.optional(),
-    logradouro: schema.string.optional(),
-    complemento: schema.string.optional(),
-    numero: schema.string.optional(),
-    bairro: schema.string.optional(),
+    logradouro: schema.string.optional([rules.maxLength(100)]),
+    complemento: schema.string.optional([rules.maxLength(100)]),
+    numero: schema.string.optional([rules.maxLength(20)]),
+    bairro: schema.string.optional([rules.maxLength(100)]),
   });
 
   /**
