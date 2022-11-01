@@ -24,11 +24,20 @@ export default class TurmaValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string(),
-    professoresId: schema.number(),
-    semestresId: schema.number(),
-    disciplinasId: schema.number(),
-    salasId: schema.number(),
+    nome: schema.string([
+      rules.maxLength(50),
+      rules.unique({ table: "turmas", column: "nome" }),
+    ]),
+    professoresId: schema.number([
+      rules.exists({ table: "professores", column: "id" }),
+    ]),
+    semestresId: schema.number([
+      rules.exists({ table: "semestres", column: "id" }),
+    ]),
+    disciplinasId: schema.number([
+      rules.exists({ table: "disciplinas", column: "id" }),
+    ]),
+    salasId: schema.number([rules.exists({ table: "salas", column: "id" })]),
     turno: schema.string([rules.maxLength(1)]),
   });
 

@@ -1,5 +1,6 @@
-import { schema, CustomMessages } from "@ioc:Adonis/Core/Validator";
+import { schema, CustomMessages, rules } from "@ioc:Adonis/Core/Validator";
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import { runFailedTests } from "@japa/preset-adonis";
 
 export default class CursoValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -24,9 +25,12 @@ export default class CursoValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string(),
+    nome: schema.string([
+      rules.maxLength(50),
+      rules.unique({ table: "cursos", column: "nome" }),
+    ]),
     duracao: schema.number(),
-    modalidade: schema.string(),
+    modalidade: schema.string([rules.maxLength(1)]),
   });
 
   /**
